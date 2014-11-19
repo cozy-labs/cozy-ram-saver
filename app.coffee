@@ -47,7 +47,10 @@ exec "cd #{appPath} && npm list --json", (error, stdout, stderr) ->
     if not mainModule.problems
 
         listModules = (dep, path, moduleList) ->
-            moduleList ?= {}
+            if fs.existsSync "#{sharedPath}/module-list.json"
+                moduleList ?= require "#{sharedPath}/module-list.json"
+            else
+                moduleList ?= {}
             path ?= appPath
             for moduleName, module of dep
                 modulePath = "#{path}/node_modules/#{moduleName}"
@@ -66,6 +69,7 @@ exec "cd #{appPath} && npm list --json", (error, stdout, stderr) ->
 
                 moduleList[moduleName][module.version].paths.push modulePath
 
+            fs.writeFileSync "#{sharedPath}/module-list.json", JSON.stringify(moduleList, null, 4)
             return moduleList
 
 
@@ -80,13 +84,13 @@ exec "cd #{appPath} && npm list --json", (error, stdout, stderr) ->
                         else
                             return 1
 
+                    #TODO: Make this asynchronous ?
                     console.log module, version
                     sharedModulePath = "#{sharedPath}/#{module}"
                     mkdirp.sync sharedModulePath
                     if not fs.existsSync "#{sharedModulePath}/#{version}"
                         fs.copySync info.paths[0], "#{sharedModulePath}/#{version}"
                     for modulePath in info.paths
-                    #async.eachSeries info.paths, (modPath, callback) ->
                         rimraf.sync modulePath
                         fs.symlinkSync "#{sharedModulePath}/#{version}", modulePath
 

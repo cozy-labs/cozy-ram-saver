@@ -16,10 +16,6 @@ By default it will save modules used multiple times under the `/usr/local/lib/no
 
 Hacking this app requires you [setup a dev environment](http://cozy.io/hack/getting-started/).
 
-## To do
-
-Detect reused module over multiple apps
-
 ## License
 
 Cozy Ram Saver is developed by Cozy Cloud and distributed under the AGPL v3 license.
