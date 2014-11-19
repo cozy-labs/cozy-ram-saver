@@ -1,0 +1,31 @@
+{
+  "name": "cozy-ram-saver",
+  "version": "0.0.1",
+  "description": "Put npm modules in common to avoid loading them multiple times in RAM",
+  "author": "Cozy Cloud <contact@cozycloud.cc> (http://cozycloud.cc)",
+  "licenses": [
+    {
+      "type": "AGPL v3",
+      "url": "http://www.gnu.org/licenses/agpl-3.0.html"
+    }
+  ],
+  "engines": [
+    "node = 0.10.x"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cozy-labs/cozy-ram-saver.git"
+  },
+  "main": "app.coffee",
+  "dependencies": {
+    "fs-extra": "~0.12.0",
+    "path": "~0.4.9",
+    "rimraf": "~2.2.8",
+    "async": "~0.9.0",
+    "mkdirp": "~0.5.0",
+    "coffee-script": "~1.8.0"
+  },
+  "scripts": {
+    "run": "node_modules/.bin/coffee app.coffee"
+  }
+}
