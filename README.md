@@ -1,6 +1,9 @@
-# [Cozy](http://cozy.io) Ram Saver
+# [Cozy](http://cozy.io) RAM Saver
 
-Save some RAM by putting node modules in common
+Save some RAM by putting node modules in common.
+Tested with 6 apps (calendar, contacts, files, notes, photos, todos), and saved ~100MB RAM.
+
+**DO NOT USE IN PRODUCTION**
 
 ## Usage
 
@@ -10,7 +13,18 @@ From the command line you can type:
     cd cozy-ram-saver
     npm run /path/to/my/app
 
+    # Or this also works for official apps
+    npm run calendar # Works for official apps
+
+    # Or if you want to reset node_modules for the calendar app
+    npm run calendar --rebuild
+
 By default it will save modules used multiple times under the `/usr/local/lib/node_shared_modules` path.
+
+## Known issues
+
+* Running the RAM saver 2 times on the same app breaks the app
+* cozy-files, cozy-home and cozy-proxy do not work with shared modules at the moment.
 
 ## Hack
 

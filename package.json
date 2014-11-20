@@ -23,7 +23,8 @@
     "rimraf": "~2.2.8",
     "async": "~0.9.0",
     "mkdirp": "~0.5.0",
-    "coffee-script": "~1.8.0"
+    "coffee-script": "~1.8.0",
+    "execSync": "^1.0.2"
   },
   "scripts": {
     "run": "node_modules/.bin/coffee app.coffee"
